@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   validates_presence_of :role
   enum role: [ :admin, :user ]
+  belongs_to :coop, foreign_key: :coop_id
 end

@@ -1,5 +1,6 @@
-RSpec.describe 'post /coop', type: :request do
-  let(:admin) { create(:user, role: 'admin') }
+RSpec.describe 'post /coops', type: :request do
+  let!(:coop) { create(:coop) }
+  let(:admin) { create(:user, role: 'admin', coop_id: 1) }
   let(:admin_credentials) { admin.create_new_auth_token }
   let(:admin_headers) do
     { HTTP_ACCEPT: 'application/json' }.merge!(admin_credentials)
@@ -12,14 +13,12 @@ RSpec.describe 'post /coop', type: :request do
 
   describe 'successfull' do
     before do
-      post '/coop',
+      post '/coops',
            params: {
-             article: {
                email: 'user@mail.com',
                password: 'password',
                password_confirmation: 'password',
                coop_id: admin.coop_id
-             }
            },
            headers: admin_headers
     end

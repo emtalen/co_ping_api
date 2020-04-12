@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :coop do
-    name { "MyString" }
+    name { "Community" }
   end
 end
